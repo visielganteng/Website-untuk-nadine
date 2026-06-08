@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Special For You 💗</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Poppins", sans-serif;
+}
+
+body{
+overflow:hidden;
+background:linear-gradient(180deg,#ffd4ea,#ffe9f4);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.7s;
+}
+
+.bg-love{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:.7;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+30%{
+opacity:1;
+}
+100%{
+transform:translateY(-150px);
+opacity:0;
+}
+}
+
+.card{
+width:min(90%,480px);
+background:white;
+padding:35px;
+border-radius:28px;
+box-shadow:0 15px 40px rgba(255,100,170,.25);
+text-align:center;
+z-index:5;
+position:relative;
+}
+
+h1{
+color:#ff4f9a;
+margin-bottom:12px;
+}
+
+p{
+color:#666;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+background:#ffe5f1;
+border-radius:15px;
+font-size:16px;
+margin-bottom:18px;
+}
+
+button{
+border:none;
+padding:14px 24px;
+border-radius:999px;
+cursor:pointer;
+margin:8px;
+font-size:16px;
+transition:.3s;
+}
+
+.primary{
+background:#ff5ea7;
+color:white;
+}
+
+.secondary{
+background:#ffd5e8;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.hidden{
+display:none;
+}
+
+.warning{
+background:#550000 !important;
+color:white;
+}
+
+.warning .card{
+background:#7c0000;
+color:white;
+}
+
+.fire{
+position:absolute;
+bottom:0;
+width:100%;
+height:120px;
+background:
+radial-gradient(circle,#ff5a36 20%,transparent 21%);
+background-size:100px 100px;
+animation:fire .5s infinite alternate;
+}
+
+@keyframes fire{
+from{transform:translateY(0)}
+to{transform:translateY(-10px)}
+}
+
+.confetti{
+position:fixed;
+font-size:28px;
+animation:boom 2s forwards;
+}
+
+@keyframes boom{
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-500px) rotate(720deg);
+opacity:0;
+}
+}
+
+.big{
+font-size:70px;
+animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-12px);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-love" id="love"></div>
+
+<div class="card" id="app">
+
+<h1>💗 Haiii 💗</h1>
+<p>Tulis nama lengkap dulu yaa~</p>
+
+<input id="nama">
+
+<button class="primary" onclick="cekNama()">
+Lanjut →
+</button>
+
+</div>
+
+<script>
+
+const app=document.getElementById("app")
+
+for(let i=0;i<40;i++){
+let h=document.createElement("div")
+h.className="heart"
+h.innerHTML="💗"
+h.style.left=Math.random()*100+"%"
+h.style.animationDuration=(5+Math.random()*6)+"s"
+document.getElementById("love").appendChild(h)
+}
+
+function cekNama(){
+
+let nama=
+document.getElementById("nama")
+.value
+.trim()
+.toLowerCase()
+
+if(
+nama==="nadin"||
+nama==="nadine"||
+nama==="nad"
+){
+alert("Pakai nama panjang nya mu anjay 😤")
+return
+}
+
+if(
+nama!=="adhe dhea alaynadine"
+){
+
+document.body.className="warning"
+
+app.innerHTML=`
+<h1>😡 SALAH ORANG 😡</h1>
+<p>Ini cuma buat seseorang tertentu.</p>
+<p>Keluar sekarang 🚪</p>
+<div class="fire"></div>
+`
+
+return
+}
+
+halaman2()
+
+}
+
+function halaman2(){
+
+app.innerHTML=`
+<h1>🎁 Nah...</h1>
+
+<p>Mau lihat ga kejutan nya?</p>
+
+<button class="primary"
+onclick="halaman3()">
+Oke
+</button>
+
+<button
+class="secondary"
+id="ga"
+onclick="ubah()">
+Tidak
+</button>
+`
+
+}
+
+let teks=[
+"iya aja ya",
+"plisss",
+"mau aja plis",
+"Oke"
+]
+
+let idx=0
+
+function ubah(){
+
+let b=
+document.getElementById("ga")
+
+idx++
+
+if(idx>=teks.length){
+halaman3()
+return
+}
+
+b.innerText=
+teks[idx]
+
+}
+
+function halaman3(){
+
+app.innerHTML=`
+
+<h1>
+💗 Nadine 💗
+</h1>
+
+<p style="
+font-size:28px;
+font-weight:bold;
+">
+
+will u be my gf?
+
+</p>
+
+<div>
+
+<button
+class="primary"
+onclick="yes()">
+
+Mau
+
+</button>
+
+<button
+class="secondary"
+id="no"
+
+onmouseover="
+kabur()
+">
+
+Tidak
+
+</button>
+
+</div>
+
+`
+
+}
+
+function kabur(){
+
+let b=
+document.getElementById("no")
+
+b.style.position="fixed"
+
+b.style.left=
+Math.random()*80+"%"
+
+b.style.top=
+Math.random()*80+"%"
+
+}
+
+function yes(){
+
+for(
+let i=0;
+i<120;
+i++
+){
+
+let c=
+document.createElement("div")
+
+c.className=
+"confetti"
+
+c.innerHTML=
+["💖","🎉","💕","✨"]
+[Math.floor(Math.random()*4)]
+
+c.style.left=
+Math.random()*100+"%"
+
+c.style.top=
+Math.random()*100+"%"
+
+document.body.appendChild(c)
+
+setTimeout(
+()=>c.remove(),
+2000
+)
+
+}
+
+app.innerHTML=`
+
+<div class="big">
+😘
+</div>
+
+<h1>
+HOREEE 💗
+</h1>
+
+<p>
+Makasii udah sampai sini ✨
+</p>
+
+`
+
+}
+
+</script>
+
+</body>
+</html>
